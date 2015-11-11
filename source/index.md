@@ -252,7 +252,7 @@ Uses `object.get()` and `object.updates()` from angular-resource.
 
 `object.get()` should return `{Data:list}` of all sub items returned by the parent item id. For example, passing in a ticketId should return all ticketLog items with that ticketId
 
-`object.updates()` should return `{data:list}` and accept `{lastUpdateCheck:datetime-utc}`, where list is ALL sub items for a parent item that has been updated. For example, if a new ticketLog is added to a ticket, `updates()` should return ALL ticketLog items for that ticket
+`object.updates()` should return `{data:list}` and accept `{lastUpdateCheck:datetime}`, where list is ALL sub items for a parent item that has been updated. For example, if a new ticketLog is added to a ticket, `updates()` should return ALL ticketLog items for that ticket
 
 
 ### How does it work?
@@ -296,7 +296,7 @@ leads.getUpdates(options).then(function (result) {
 
 Uses `object.updates()` from angular-resource.
 
-`object.updates()` should return `{data:list}` and accept `{lastUpdateCheck:datetime-utc}`, where list is all items that have been updated or created
+`object.updates()` should return `{data:list}` and accept `{lastUpdateCheck:datetime}`, where list is all items that have been updated or created
 
 
 ### How does it work?
