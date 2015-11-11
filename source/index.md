@@ -563,7 +563,7 @@ name | string | Item key to retrieve
 
 
 
-<h2> _forceJSON </h2>
+## _forceJSON
 
 Convert the parent object and all of it's children (1 layer down) to JSON by checking if they implement a `.toJSON` method and calling it
 
