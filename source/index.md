@@ -109,9 +109,11 @@ var itemKeys = {
 
 ### Custom Field Mapping
 
-`array[[key,value]]`
+`array[[key,value, delete]]`
 
 This is used when a data item's fields may not match up with it's list item fields
+
+If `delete` is true, it will delete the un-needed second key, `value` above and `name` in the example
 
 ```js
 var customFieldMapping = [
