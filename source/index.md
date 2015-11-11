@@ -153,6 +153,40 @@ Uses `object.get()` from angular-resource. It needs to accept a `{pk:id}` parame
 4. Cache the newly found object, and set the store's `lastUpdateDate` to now
 
 
+## autoSave
+
+This method will save the data to local storage and then the api
+
+Parameter | Type | Description
+--------- | ---- | -----------
+item | angular-resource | item to save
+success | function | api success callback
+error | function | api error callback
+
+```js
+leads.autoSave($state.lead, function(lead){
+  $state.lead = lead;
+}, function(error){
+  console.log(error);
+});
+```
+
+### Prerequisites
+
+Uses `object.$save()` from angular-resource. 
+
+
+### How does it work?
+
+1. Convert item to JSON and `_mapFields`
+
+2. Update local store
+
+3. Use resource `.$save()`
+
+
+
+
 ## autoList
 
 This method will return a list of all items in the store
@@ -317,12 +351,26 @@ It will filter the list, and for every `object` create a new resource object usi
 
 It then returns `{
   data: list, 
-  total: list.length
+  total: list.length // list length before any sort parameters 
 }`
 
 Parameter | Type | Description
 --------- | ---- | -----------
 list | list<data> | list to convert
+params | object | sort, order and size parameters 
+
+
+Valid `param` sub items
+
+Parameter | Type | Description
+--------- | ---- | -----------
+sortOrder | string | field name - [lodash](https://lodash.com/docs#sortByOrder)
+sortDir | string | `'asc'` or `'desc'` - [lodash](https://lodash.com/docs#sortByOrder)
+size | int | number of records in the sub-set of data. dataSource total will be the number of ALL records - [lodash](https://lodash.com/docs#take)
+skip | int | number of records to skip - [lodash](https://lodash.com/docs#slice)
+
+
+
 
 ## _ Helper Properties
 
@@ -479,8 +527,8 @@ Set a kvp to the store that does not follow the `{pk:data}` pattern used in the 
 Will always overwrite without trying to merge, wrapper for `.setItem`
 
 ```js
-localStorage.setKVP(store, 'lastUpdateDate', moment().toJSON()).then(function(){
-  console.log("Done");
+localStorage.setKVP(store, 'lastUpdateDate', moment().toJSON()).then(function(result){
+  console.log(result);
 });
 ```
 
