@@ -1,0 +1,31 @@
+{
+  "name": "auto-docs",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"https://raw.githubusercontent.com/lord/img/master/logo-slate.png\" alt=\"Slate: API Documentation Generator\" width=\"226\">   <br>   <a href=\"https://travis-ci.org/lord/slate\"><img src=\"https://travis-ci.org/lord/slate.svg?branch=master\" alt=\"Build Status\"></a> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfkuntz/slate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfkuntz/slate/issues"
+  },
+  "homepage": "https://github.com/mfkuntz/slate#readme",
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1"
+  },
+  "dependencies": {
+    "curlconverter": "^1.0.1",
+    "lodash": "^4.16.4",
+    "marked": "^0.3.6"
+  }
+}
