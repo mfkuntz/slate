@@ -58,18 +58,13 @@ curl "https://manager-special.mfkuntz.com/api/product"
 ```json
 [
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "id":"de163de0-684b-41bc-8a13-ae82b395188f",
+    "manufacturer":"Test",
+    "productGroup":"Test group",
+    "title":"Test Title",
+    "upc":"01234567890",
+    "human_id":1,
+    "category":-1
   }
 ]
 ```
@@ -95,20 +90,20 @@ Remember — a happy kitten is an authenticated kitten!
 
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+# curl "http://example.com/api/kittens/2"
+#  -H "Authorization: meowmeowmeow"
 ```
 
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+// {
+//   "id": 2,
+//   "name": "Max",
+//   "breed": "unknown",
+//   "fluffiness": 5,
+//   "cuteness": 10
 }
 ```
 

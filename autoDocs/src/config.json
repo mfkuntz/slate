@@ -1,6 +1,6 @@
 {
     "urlReplace": {
         "src": "https://manager-special.mfkuntz.com",
-        "value": "http:localhost:1337"
+        "value": "http://localhost:1337"
     }
 }

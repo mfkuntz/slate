@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import { fsAsync } from './utils/promiser';
 import * as path from 'path';
 
 const _ = require('lodash');
@@ -9,6 +9,7 @@ import Curl from './models/curl';
 import DocModel from './models/docModel';
 
 import Runner from './runner';
+import TestRunner from './testRunner';
 
 export class FileParser {
 
@@ -19,16 +20,11 @@ export class FileParser {
   }
 
   public run() {
-    console.log('parser: ' + this.filePath);
-
-    fs.readFile(this.filePath, 'utf8', this.handleFileString.bind(this));
+    return fsAsync.readFileAsync(this.filePath, 'utf8')
+      .then(this.handleFileString.bind(this));
   }
 
-  private handleFileString (err: NodeJS.ErrnoException, data: string) {
-      if (err) {
-        throw new Error(err.message);
-      }
-
+  private handleFileString (data: string) {
       const tokens = lexer(data);
 
       const curls = this.getCurlObjects(tokens);
@@ -52,8 +48,13 @@ export class FileParser {
         results.push(doc);
       }
 
+      // TODO get promise and pass it back up the chain
+      const promises = results.map((result) => {
+        const runner = new TestRunner(result);
+        return runner.run();
+      });
 
-      results.forEach(item => console.log(JSON.stringify(item, null, 2)));
+      return Promise.all(promises);
   }
 
   private getCurlObjects(tokens: any) {
@@ -74,6 +75,7 @@ export class FileParser {
     return _.chain(tokens)
           .filter(item => (item.type === 'code' && item.lang === 'json'))
           .map(item => item.text)
+          .filter(item => item && item.substring(0, 2) !== '//') // no empty lines or comments
           .map(str => JSON.parse(str))
           .value();
   }

@@ -10,12 +10,18 @@ export default class Runner {
   public run() {
     const dirPath = path.join(__dirname, Runner.dirName);
 
+
+    const promises = [];
     fs.readdirSync(dirPath).forEach((file: string) => {
       if (file !== 'index.js' && file.match(/\.md$/) !== null) {
         const parser = new FileParser(file);
-        parser.run();
+        promises.push(parser.run());
       }
     });
+
+    return Promise.all(promises)
+      .then(() => console.log('DONE!'))
+      .catch((err) => console.error(err));
   }
 
 }
