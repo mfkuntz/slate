@@ -61,7 +61,14 @@ export default class TestRunner {
   }
 
   private responseError(err) {
-    throw new Error(err);
+    if (err.status && err.status > 200) {
+      throw new Error(`Response Error!
+      URL: ${this.doc.curl.url} | status: ${err.status}
+      `);
+    }
+
+    const errorMessage = JSON.stringify(err, null, 2);
+    throw new Error(errorMessage);
   }
 
 }

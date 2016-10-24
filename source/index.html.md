@@ -45,9 +45,9 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Products
 
-## Get All Kittens
+## Get All Products
 
 ```shell
 curl "https://manager-special.mfkuntz.com/api/product"
@@ -69,18 +69,8 @@ curl "https://manager-special.mfkuntz.com/api/product"
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all products.
 
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
@@ -104,7 +94,7 @@ Remember — a happy kitten is an authenticated kitten!
 //   "breed": "unknown",
 //   "fluffiness": 5,
 //   "cuteness": 10
-}
+// }
 ```
 
 This endpoint retrieves a specific kitten.
