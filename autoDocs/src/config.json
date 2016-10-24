@@ -1,6 +1,14 @@
 {
     "urlReplace": {
         "src": "https://manager-special.mfkuntz.com",
-        "value": "http://localhost:1337"
+        "value": "https://dev-mapi2.mhelpdesk.com:4433"
+    },
+
+    
+    "auth":{
+        "route": "/api/token",
+        "verb": "post",
+        "username": "",
+        "password": ""
     }
 }

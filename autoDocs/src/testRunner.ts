@@ -2,8 +2,7 @@ import DocModel from './models/docModel';
 
 import * as request from 'superagent';
 import * as assert from 'assert';
-
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 export default class TestRunner {
 
