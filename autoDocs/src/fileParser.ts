@@ -1,6 +1,8 @@
 import { fsAsync } from './utils/promiser';
 import * as path from 'path';
 
+import * as Promise from 'bluebird';
+
 const _ = require('lodash');
 const { lexer } = require('marked');
 const curlConverter = require('curlconverter/util');
@@ -19,7 +21,7 @@ export class FileParser {
     this.filePath = path.join(__dirname, Runner.dirName, fileName);
   }
 
-  public run() {
+  public run(): Promise<DocModel[]> {
     return fsAsync.readFileAsync(this.filePath, 'utf8')
       .then(this.handleFileString.bind(this));
   }
@@ -44,17 +46,12 @@ export class FileParser {
         const doc = new DocModel();
         doc.curl = curl;
         doc.format = codeBlocks[i];
+        doc.filePath = this.filePath;
 
         results.push(doc);
       }
 
-      // TODO get promise and pass it back up the chain
-      const promises = results.map((result) => {
-        const runner = new TestRunner(result);
-        return runner.run();
-      });
-
-      return Promise.all(promises);
+      return results;
   }
 
   private getCurlObjects(tokens: any) {

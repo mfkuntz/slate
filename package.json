@@ -26,11 +26,13 @@
     "tslint": "^3.15.1"
   },
   "dependencies": {
+    "@types/bluebird": "^3.0.35",
     "@types/lodash": "^4.14.37",
     "@types/superagent": "^2.0.35",
     "bluebird": "^3.4.6",
     "curlconverter": "^1.0.1",
     "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.2.0",
     "gulp-typescript": "^3.0.2",
     "lodash": "^4.16.4",
     "marked": "^0.3.6",

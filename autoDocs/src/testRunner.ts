@@ -4,6 +4,8 @@ import * as request from 'superagent';
 import * as assert from 'assert';
 import * as _ from 'lodash';
 
+import { authHelper } from './auth';
+
 export default class TestRunner {
 
   private doc: DocModel;
@@ -17,6 +19,8 @@ export default class TestRunner {
 
     return request(doc.curl.method, doc.curl.url)
       .set('Accept', 'application/json')
+      .set('Authorization', authHelper.Token)
+      .set('grant_type', 'bearer')
       .then(
         this.responseSuccess.bind(this),
         this.responseError.bind(this)
@@ -55,18 +59,20 @@ export default class TestRunner {
 
     assert(_.isEqual(itemKeys, docKeys));
 
-    console.log(`Pass: ${this.doc.curl.url}`)
-
+    return `Pass: ${this.doc.curl.url}`;
   }
 
   private responseError(err) {
+    const errorMessage = JSON.stringify(err, null, 2);
+
     if (err.status && err.status > 200) {
       throw new Error(`Response Error!
       URL: ${this.doc.curl.url} | status: ${err.status}
+      response: 
+      ${errorMessage}
       `);
     }
 
-    const errorMessage = JSON.stringify(err, null, 2);
     throw new Error(errorMessage);
   }
 

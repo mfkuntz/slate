@@ -33,7 +33,6 @@ export class Auth {
       const { token_type, access_token } = body; // tslint:disable-line:variable-name
 
       this.Token = `${token_type} ${access_token}`;
-      console.log(`TOKEN: ${this.Token}`);
     }
 
     private requestError(err) {

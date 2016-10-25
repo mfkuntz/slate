@@ -1,13 +1,16 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
-
+const sourcemaps = require('gulp-sourcemaps');
 
 const tsProject = ts.createProject('tsconfig.json');
 gulp.task('build', () => {
   const result = tsProject.src() // instead of gulp.src(...)
+    .pipe(sourcemaps.init())
     .pipe(tsProject());
 
-  return result.js.pipe(gulp.dest('autoDocs/dist'));
+  return result.js
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('autoDocs/dist'));
 });
 
 gulp.task('copy', () => {
@@ -21,7 +24,9 @@ gulp.task('run', ['build', 'copy'], () => {
 
   const runner = new Runner();
 
-  runner.run();
+  return runner
+    .init()
+    .then(() => runner.run());
 
   /* eslint-enable no-console, global-require */
 });

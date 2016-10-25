@@ -45,6 +45,21 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
+# Portal Settings
+
+## Is Elasticsearch Enabled
+
+```shell
+curl "https://manager-special.mfkuntz.com/api/portalsetting/IsElasticsearchEnabled/65780"
+```
+> Return Value:
+
+```json
+{
+  "result": true
+}
+```
+
 # Products
 
 ## Get All Products
