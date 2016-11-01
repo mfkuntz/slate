@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
+const shell = require('gulp-shell');
 
 const tsProject = ts.createProject('tsconfig.json');
 gulp.task('build', () => {
@@ -30,3 +31,12 @@ gulp.task('run', ['build', 'copy'], () => {
 
   /* eslint-enable no-console, global-require */
 });
+
+gulp.task('init-docs', shell.task([
+  'gem install bundler',
+  'bundle install'
+]));
+
+gulp.task('docs', shell.task([
+  'bundle exec middleman server'
+]));

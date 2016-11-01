@@ -36,9 +36,9 @@ Getting Started with Slate
 
 You're going to need:
 
- - **Linux or OS X** — Windows may work, but is unsupported.
  - **Ruby, version 2.0 or newer**
  - **Ruby Dev Tools - If running on Windows. For more instructions, follow error message after step 4 below.**
+ - **Ruby Gems 2.6 or newer** - http://guides.rubygems.org/ssl-certificate-update/
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
@@ -49,7 +49,14 @@ You're going to need:
 4. Initialize and start Slate. You can either do this locally, or with Vagrant:
 
 ```shell
-# either run this to run locally
+# helper node wrapper
+npm install
+# install the ruby stuff
+gulp init-docs 
+# serve the docs
+gulp docs
+
+# or run using ruby directly
 bundle install
 bundle exec middleman server
 
